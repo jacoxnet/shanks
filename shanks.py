@@ -1,6 +1,26 @@
+import math
+
+def check_prime(num):
+    if num < 2 or num % 2 == 0:
+        return False
+    for i in range(3, math.floor(math.sqrt(num)) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
 def enter_number():
-    print("Enter prime number: (0 to end) ", end="")
-    return int(input())
+    while True:
+        print("Enter prime number: (0 to end) ", end="")
+        num = input()
+        try:
+            num = int(num)
+        except ValueError:
+            print("Not an integer")
+            continue
+        if num == 0 or check_prime(num):
+            return num
+        else:
+            print("Not a prime")
 
 def calc_rep_digits(num):
     dividend = 1
